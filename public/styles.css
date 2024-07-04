@@ -73,7 +73,6 @@ main {
     align-items: center;
     flex: 1;
     padding: 2rem;
-    text-align: center;
 }
 
 .content h1 {
@@ -151,6 +150,14 @@ main {
     font-weight: 300;
 }
 
+.tab1 {
+    tab-size: 2;
+}
+
+.tab2 {
+    tab-size: 4;
+}
+
 a {
     color: #fff;
     text-decoration: none;
@@ -178,6 +185,12 @@ a:hover {
     .headshot-area {
         width: 20rem;
         height: 20rem;
+    }
+    .tab1 {
+        tab-size: 2;
+    }
+    .tab2 {
+        tab-size: 4;
     }
 }
 
@@ -208,6 +221,12 @@ a:hover {
     .social {
         justify-content: center;
     }
+    .tab1 {
+        tab-size: 2;
+    }
+    .tab2 {
+        tab-size: 4;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -226,5 +245,11 @@ a:hover {
     .headshot-area {
         width: 24rem;
         height: 24rem;
+    }
+    .tab1 {
+        tab-size: 2;
+    }
+    .tab2 {
+        tab-size: 4;
     }
 }
