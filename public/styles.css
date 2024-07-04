@@ -13,6 +13,8 @@ html {
     min-height: 100vh;
     background: linear-gradient(to bottom right, #1a202c, #4a5568);
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 nav {
@@ -20,6 +22,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .logo {
@@ -27,8 +30,12 @@ nav {
     font-size: 1.25rem;
 }
 
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
 .nav-links a {
-    margin: 0 1rem;
     color: #a0aec0;
     text-decoration: none;
 }
@@ -37,45 +44,62 @@ nav {
     color: #ed8936;
 }
 
+.resume-link {
+    color: #a0aec0;
+    text-decoration: none;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: #a0aec0;
+    margin: 4px 0;
+}
+
 .email {
     font-size: 0.875rem;
 }
 
 main {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    height: calc(100vh - 80px);
-    padding: 4rem 4rem;
-    margin-left: 30;
+    flex: 1;
+    padding: 2rem;
+    text-align: center;
 }
 
 .content h1 {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 400;
-    padding-left: 50;
+    margin: 0.5rem 0;
 }
 
 .content h2 {
     font-size: 1.5rem;
-    margin-left: 30;
     font-weight: 300;
-    margin: 0 0 1rem 0;
-    padding-left: 50;
+    margin: 0.5rem 0;
 }
 
 .content p {
     max-width: 24rem;
     color: #a0aec0;
-    margin-left: 30;
-    padding-left: 50;
     font-size: 0.875rem;
+    margin: 0.5rem 0;
 }
 
 .social {
     display: flex;
+    justify-content: left;
     align-items: center;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
 }
 
 .social span {
@@ -84,10 +108,11 @@ main {
 }
 
 .headshot-area {
-    width: 24rem;
-    height: 24rem;
+    width: 12rem;
+    height: 12rem;
     overflow: hidden;
     border-radius: 50%;
+    margin: 4rem 0;
 }
 
 .headshot-image {
@@ -117,11 +142,89 @@ main {
 .tab {
     position: absolute;
     top: 50%;
-    left: 2rem;
+    left: 0.5rem;
     background-color: #6b46c1;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.2rem 0.5rem;
     transform: rotate(-90deg) translateX(-50%);
     transform-origin: left top;
-    font-weight: 400;
+    font-weight: 300;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #777;
+}
+
+
+/* Responsive Design */
+
+@media (min-width: 768px) {
+    main {
+        flex-direction: row;
+        justify-content: space-around;
+        text-align: left;
+    }
+    .content {
+        max-width: 50%;
+    }
+    .content h1 {
+        font-size: 4rem;
+    }
+    .headshot-area {
+        width: 20rem;
+        height: 20rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.8);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        text-align: center;
+    }
+    .nav-links a {
+        padding: 1rem;
+        border-bottom: 1px solid #4a5568;
+    }
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+    .hamburger {
+        display: flex;
+    }
+    .hamburger.active+.nav-links {
+        display: flex;
+    }
+    .social {
+        justify-content: center;
+    }
+}
+
+@media (min-width: 1200px) {
+    nav {
+        padding: 1rem 4rem;
+    }
+    .content h1 {
+        font-size: 5rem;
+    }
+    .content h2 {
+        font-size: 2rem;
+    }
+    .content p {
+        font-size: 1rem;
+    }
+    .headshot-area {
+        width: 24rem;
+        height: 24rem;
+    }
 }
