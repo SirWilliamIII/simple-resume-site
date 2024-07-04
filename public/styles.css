@@ -1,0 +1,127 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: "Avenir Next", "Helvetica Neue", "Segoe UI", "Roboto", sans-serif;
+    font-weight: 300;
+    height: 100%;
+    color: white;
+    overflow: hidden;
+}
+
+.container {
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #1a202c, #4a5568);
+    position: relative;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-weight: 400;
+    font-size: 1.25rem;
+}
+
+.nav-links a {
+    margin: 0 1rem;
+    color: #a0aec0;
+    text-decoration: none;
+}
+
+.nav-links a:first-child {
+    color: #ed8936;
+}
+
+.email {
+    font-size: 0.875rem;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: calc(100vh - 80px);
+    padding: 4rem 4rem;
+    margin-left: 30;
+}
+
+.content h1 {
+    font-size: 4rem;
+    font-weight: 400;
+    padding-left: 50;
+}
+
+.content h2 {
+    font-size: 1.5rem;
+    margin-left: 30;
+    font-weight: 300;
+    margin: 0 0 1rem 0;
+    padding-left: 50;
+}
+
+.content p {
+    max-width: 24rem;
+    color: #a0aec0;
+    margin-left: 30;
+    padding-left: 50;
+    font-size: 0.875rem;
+}
+
+.social {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.social span {
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+}
+
+.headshot-area {
+    width: 24rem;
+    height: 24rem;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.headshot-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.corner-text {
+    position: absolute;
+    font-size: 1.25rem;
+    font-weight: 200;
+}
+
+.corner-text.bottom-left {
+    bottom: 2rem;
+    left: 2rem;
+    transform: rotate(-90deg);
+}
+
+.corner-text.bottom-right {
+    bottom: 2rem;
+    right: 2rem;
+    transform: rotate(90deg);
+}
+
+.tab {
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    background-color: #6b46c1;
+    color: white;
+    padding: 0.5rem 1rem;
+    transform: rotate(-90deg) translateX(-50%);
+    transform-origin: left top;
+    font-weight: 400;
+}
