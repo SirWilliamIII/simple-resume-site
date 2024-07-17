@@ -1,17 +1,21 @@
-body,
-html {
+* {
     margin: 0;
     padding: 0;
-    font-family: "Avenir Next", "Helvetica Neue", "Segoe UI", "Roboto", sans-serif;
-    font-weight: 300;
+}
+
+html,
+body {
+    width: 100%;
     height: 100%;
     color: white;
-    overflow: hidden;
+    overflow-x: hidden;
+    font-family: "Roboto", sans-serif;
 }
 
 .container {
-    min-height: 100vh;
-    background: linear-gradient(to bottom right, #1a202c, #4a5568);
+    min-height: 100%;
+    background: linear-gradient(to bottom, #323232 0%, #3f3f3f 40%, #1c1c1c 150%), linear-gradient( to top, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.25) 200%);
+    width: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -73,16 +77,18 @@ main {
     align-items: center;
     flex: 1;
     padding: 2rem;
+    tab-size: 4;
 }
 
 .content h1 {
     font-size: 3rem;
     font-weight: 400;
-    margin: 0.5rem 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
 }
 
 .content h2 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 300;
     margin: 0.5rem 0;
 }
@@ -90,8 +96,9 @@ main {
 .content p {
     max-width: 24rem;
     color: #a0aec0;
-    font-size: 0.875rem;
-    margin: 0.5rem 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    /* Regular */
 }
 
 .social {
@@ -150,12 +157,9 @@ main {
     font-weight: 300;
 }
 
-.tab1 {
-    tab-size: 2;
-}
-
 .tab2 {
-    tab-size: 4;
+    margin-left: 30px;
+    /*or whatever indentation size you want*/
 }
 
 a {
@@ -174,7 +178,7 @@ a:hover {
     main {
         flex-direction: row;
         justify-content: space-around;
-        text-align: left;
+        text-align: justify;
     }
     .content {
         max-width: 50%;
@@ -185,12 +189,6 @@ a:hover {
     .headshot-area {
         width: 20rem;
         height: 20rem;
-    }
-    .tab1 {
-        tab-size: 2;
-    }
-    .tab2 {
-        tab-size: 4;
     }
 }
 
@@ -212,20 +210,21 @@ a:hover {
     .nav-links a:last-child {
         border-bottom: none;
     }
-    .hamburger {
+    /* .hamburger {
         display: flex;
     }
     .hamburger.active+.nav-links {
         display: flex;
-    }
+    } */
     .social {
         justify-content: center;
     }
-    .tab1 {
-        tab-size: 2;
+    .container {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
-    .tab2 {
-        tab-size: 4;
+    .tab {
+        top: 20%;
     }
 }
 
@@ -245,11 +244,5 @@ a:hover {
     .headshot-area {
         width: 24rem;
         height: 24rem;
-    }
-    .tab1 {
-        tab-size: 2;
-    }
-    .tab2 {
-        tab-size: 4;
     }
 }
