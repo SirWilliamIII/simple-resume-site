@@ -1,20 +1,22 @@
 {
-    "name": "resume",
-    "version": "1.0.0",
-    "main": "index.js",
-    "scripts": {
-        "start": "node server/app.js",
-        "dev": "nodemon server/app.js",
-        "build": "babel src -d lib",
-        "test": "jest"
-    },
-    "author": "",
-    "license": "ISC",
-    "description": "",
-    "dependencies": {
-        "@fingerprintjs/fingerprintjs": "^4.4.3",
-        "express": "^4.19.2",
-        "nodemon": "^3.1.4",
-        "path": "^0.12.7"
-    }
+  "name": "resume",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "dev": "nodemon server/app.js",
+    "build": "babel src -d lib",
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@fingerprintjs/fingerprintjs-pro-server-api": "^4.1.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4",
+    "path": "^0.12.7",
+    "url": "^0.11.3"
+  }
 }
