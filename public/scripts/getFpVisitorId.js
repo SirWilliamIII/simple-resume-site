@@ -8,7 +8,7 @@ async function getAndSendVisitorId() {
     const { apiKey } = await keyRes.json();
 
 
-    const FingerprintJS = await import(`https://fpjscdn.net/v3/${apiKey}`);
+    const FingerprintJS = await import(`https://fpjscdn.net/v3/6TuYm9Q8YzpfbDVUTUY3`);
     const fp = await FingerprintJS.load();
     const result = await fp.get();
     const visitorId = result.visitorId;
