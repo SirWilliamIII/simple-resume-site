@@ -11,20 +11,6 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-const {
-  FingerprintJsServerApiClient,
-} = require("@fingerprintjs/fingerprintjs-pro-server-api");
-
-const apiKey = process.env.API_KEY;
-const envRegion = process.env.REGION;
-
-const fpClient = new FingerprintJsServerApiClient({
-  apiKey: apiKey,
-  region: envRegion,
-});
-
-console.log(fpClient);
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.static(path.resolve(__dirname, "..", "public")));

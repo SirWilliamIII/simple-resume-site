@@ -9,9 +9,6 @@ async function getAndSendVisitorId() {
     const result = await fp.get();
     const visitorId = result.visitorId;
 
-    console.log(visitorId); // Log the visitorId for debugging
-
-    // Send the visitorId to your server
     const response = await fetch("/visitorid", {
       method: "POST",
       headers: {
@@ -23,7 +20,6 @@ async function getAndSendVisitorId() {
     if (!response.ok) {
       throw new Error(`Server error: ${response.statusText}`);
     }
-
     const responseText = await response.text();
     console.log("Raw server response:", responseText);
 
