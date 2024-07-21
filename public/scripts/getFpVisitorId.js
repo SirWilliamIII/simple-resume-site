@@ -3,19 +3,17 @@
 // Function to get the visitor identifier and send it to the server
 async function getAndSendVisitorId() {
   try {
-    const key = await fetch('/clientApiKey');
-    if (!key.ok) throw new Error('Failed to fetch API key');
-    const {apiKey} = await key.json();
-    const fpPromise = import(`https://fpjscdn.net/v3/${apiKey}`).then(
-        (FingerprintJS) => FingerprintJS.load()
-    );
+    const keyRes = await fetch('/clientApiKey');
+    if (!keyRes.ok) throw new Error('Failed to fetch API key');
+    const { apiKey } = await keyRes.json();
 
 
-
-    const fp = await fpPromise;
+    const FingerprintJS = await import(`https://fpjscdn.net/v3/${apiKey}`);
+    const fp = await FingerprintJS.load();
     const result = await fp.get();
     const visitorId = result.visitorId;
-    console.log(visitorId)
+
+
     const response = await fetch("/visitorid", {
       method: "POST",
       headers: {
@@ -36,4 +34,4 @@ async function getAndSendVisitorId() {
 }
 
 // Attach the function to window's load event
-window.addEventListener("load", getAndSendVisitorId);
+window.addEventListener("DOMContentLoaded", getAndSendVisitorId);
