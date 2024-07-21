@@ -1,43 +1,40 @@
 /* jshint esversion: 6, node: true */
 const express = require("express");
 const path = require("path");
-const fs = require("fs");
+const bodyParser = require('body-parser');
 const { Pool } = require("pg");
-
-const { config } = require("dotenv");
-config();
+const app = express();
+const PORT = process.env.PORT || 8000;
+const env = require("dotenv");
+env.config();
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
-
-const app = express();
-const PORT = process.env.PORT || 3000;
 app.use(express.static(path.resolve(__dirname, "..", "public")));
-app.use(express.json());
+app.use(bodyParser.json());
 
 app.get("/", function (req, res) {
   res.sendFile(path.resolve(__dirname, "..", "public", "index.html"));
 });
 
-app.post("/visitorid", async (req, res) => {
-  const { visitorId } = req.body; // Extract visitorId from the request body
+// Assuming you have dotenv and express set up
+app.get('/clientApiKey', (req, res) => {
+  // Implement authentication and authorization checks here
+  res.json({ apiKey: process.env.CLIENT_API_KEY });
+});
 
-  if (!visitorId) {
-    return res.status(400).send("visitorId is required");
-  }
+app.post("/visitorid", async (req, res) => {
+  const { visitorId } = req.body
 
   try {
     // Insert visitorId into the visitors table
-    const result = await pool.query(
-      "INSERT INTO visitors (id) VALUES ($1) RETURNING *",
-      [visitorId]
-    );
-
-    console.log(`Inserted visitor: ${result.rows[0].visitor_id}`);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Server error");
+    const queryText = 'INSERT INTO visitors(id) VALUES($1)';
+    const response = await pool.query(queryText, [visitorId]);
+    res.status(200).send('Visitor ID stored successfully');
+  } catch (error) {
+    console.error('Error storing visitor ID:', error);
+    res.status(500).send('Error storing visitor ID');
   }
 });
 

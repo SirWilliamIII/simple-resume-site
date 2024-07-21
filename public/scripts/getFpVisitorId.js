@@ -1,14 +1,21 @@
-const fpPromise = import("https://fpjscdn.net/v3/6TuYm9Q8YzpfbDVUTUY3").then(
-  (FingerprintJS) => FingerprintJS.load()
-);
+
 
 // Function to get the visitor identifier and send it to the server
 async function getAndSendVisitorId() {
   try {
+    const key = await fetch('/clientApiKey');
+    if (!key.ok) throw new Error('Failed to fetch API key');
+    const {apiKey} = await key.json();
+    const fpPromise = import(`https://fpjscdn.net/v3/${apiKey}`).then(
+        (FingerprintJS) => FingerprintJS.load()
+    );
+
+
+
     const fp = await fpPromise;
     const result = await fp.get();
     const visitorId = result.visitorId;
-
+    console.log(visitorId)
     const response = await fetch("/visitorid", {
       method: "POST",
       headers: {
@@ -23,10 +30,6 @@ async function getAndSendVisitorId() {
     const responseText = await response.text();
     console.log("Raw server response:", responseText);
 
-    // Attempt to parse the response as JSON
-    const responseData = JSON.parse(responseText);
-
-    console.log("Server response:", responseData);
   } catch (error) {
     console.error("Error getting or sending visitorId: ", error);
   }
