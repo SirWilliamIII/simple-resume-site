@@ -2,28 +2,38 @@ const fpPromise = import("https://fpjscdn.net/v3/6TuYm9Q8YzpfbDVUTUY3").then(
   (FingerprintJS) => FingerprintJS.load()
 );
 
-// Get the visitor identifier when you need it.
-fpPromise
-  .then((fp) => fp.get())
-  .then((result) => console.log(result.visitorId));
+// Function to get the visitor identifier and send it to the server
 async function getAndSendVisitorId() {
-  // Assuming region and apiKey are defined earlier in your script
-  const client = new FingerprintJsServerApiClient({ region, apiKey });
+  try {
+    const fp = await fpPromise;
+    const result = await fp.get();
+    const visitorId = result.visitorId;
 
-  // Assuming visitorId is obtained earlier in your script
-  const visitorHistory = await client.getVisitorHistory(visitorId, {
-    limit: 1,
-  });
+    console.log(visitorId); // Log the visitorId for debugging
 
-  console.log(visitorHistory);
-  // Send the visitorId to your server
-  fetch("/visitorid", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ visitorId: visitorHistory }),
-  });
+    // Send the visitorId to your server
+    const response = await fetch("/visitorid", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ visitorId }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.statusText}`);
+    }
+
+    const responseText = await response.text();
+    console.log("Raw server response:", responseText);
+
+    // Attempt to parse the response as JSON
+    const responseData = JSON.parse(responseText);
+
+    console.log("Server response:", responseData);
+  } catch (error) {
+    console.error("Error getting or sending visitorId: ", error);
+  }
 }
 
 // Attach the function to window's load event
