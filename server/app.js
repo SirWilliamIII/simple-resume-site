@@ -10,6 +10,9 @@ env.config();
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false // Note: Setting this to false makes the connection less secure
+  }
 });
 app.use(express.static(path.resolve(__dirname, "..", "public")));
 app.use(bodyParser.json());
@@ -27,10 +30,12 @@ app.get('/clientApiKey', (req, res) => {
 app.post("/visitorid", async (req, res) => {
   const { visitorId } = req.body
 
+
   try {
     // Insert visitorId into the visitors table
     const queryText = 'INSERT INTO visitors(id) VALUES($1)';
     const response = await pool.query(queryText, [visitorId]);
+
     res.status(200).send('Visitor ID stored successfully');
   } catch (error) {
     console.error('Error storing visitor ID:', error);
