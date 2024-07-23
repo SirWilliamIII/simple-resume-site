@@ -5,13 +5,14 @@ const { Pool } = require("pg");
 const app = express();
 const PORT = process.env.PORT || 8000;
 const env = require("dotenv");
+
 env.config();
+
+const isProduction = process.env.NODE_ENV === "production";
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-    ssl: {
-        rejectUnauthorized: false,
-    },
+  ssl: isProduction ? { rejectUnauthorized: false } : false,
 });
 
 app.use(express.static(path.resolve(__dirname, "..", "public")));
