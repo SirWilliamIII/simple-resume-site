@@ -5,19 +5,9 @@ const { Pool } = require("pg");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const env = require("dotenv");
-const { auth } = require('express-openid-connect');
-
 
 env.config();
 
-const config = {
-    authRequired: false,
-    auth0Logout: true,
-    baseURL: 'http://localhost:3000',
-    clientID: 'UuiaVKTf3Twuh8uiIIb6CFR2EKMQohhp',
-    issuerBaseURL: 'https://willcarpenter.auth0.com',
-    secret: 'LONG_RANDOM_STRING'
-};
 
 app.use(auth(config));
 
